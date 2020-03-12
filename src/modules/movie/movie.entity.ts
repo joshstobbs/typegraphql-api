@@ -4,14 +4,13 @@ import {
 	PrimaryGeneratedColumn,
 	Column,
 	ManyToMany,
-	JoinTable,
 } from 'typeorm'
 import { Field, ID, ObjectType } from 'type-graphql'
-import { Movie } from '../movie/movie.entity'
+import { Actor } from '../actor/actor.entity'
 
 @ObjectType()
 @Entity()
-export class Actor extends BaseEntity {
+export class Movie extends BaseEntity {
 	@Field(() => ID)
 	@PrimaryGeneratedColumn('uuid')
 	id: string
@@ -19,9 +18,4 @@ export class Actor extends BaseEntity {
 	@Field()
 	@Column()
 	name: string
-
-	@Field(() => [Movie])
-	@ManyToMany(() => Movie)
-	@JoinTable()
-	movies: Movie[]
 }

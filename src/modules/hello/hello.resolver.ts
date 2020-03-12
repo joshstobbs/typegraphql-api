@@ -1,10 +1,9 @@
-import { Resolver, Query, Arg } from 'type-graphql'
-import { HelloInput } from './hello.input'
+import { Resolver, Query } from 'type-graphql'
 
 @Resolver()
 export default class HelloResolver {
 	@Query(() => String)
-	hello(@Arg('input', () => HelloInput) input: HelloInput) {
-		return `Hello ${input.name}`
+	hello() {
+		return 'Hello world'
 	}
 }
