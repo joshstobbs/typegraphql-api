@@ -19,12 +19,6 @@ const bootstrap = async () => {
 	app.use(cors())
 	app.use(cookieParser())
 
-	app.get('/', (res: Response) => {
-		return res.json({
-			message: 'Hello',
-		})
-	})
-
 	app.post('/refresh_token', async (req: Request, res: Response) =>
 		refreshRoute(req, res),
 	)
