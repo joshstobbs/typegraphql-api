@@ -1,12 +1,14 @@
 import 'dotenv/config'
 import 'reflect-metadata'
-import express, { Response } from 'express'
+import express, { Request, Response } from 'express'
 import { ApolloServer } from 'apollo-server-express'
 import { createConnection } from 'typeorm'
 import { json } from 'body-parser'
 import cors from 'cors'
+import cookieParser from 'cookie-parser'
 
 import createSchema from '../graphql'
+import { refreshRoute } from '../auth'
 
 const bootstrap = async () => {
 	const app = express()
@@ -15,12 +17,17 @@ const bootstrap = async () => {
 
 	app.use(json())
 	app.use(cors())
+	app.use(cookieParser())
 
 	app.get('/', (res: Response) => {
 		return res.json({
 			message: 'Hello',
 		})
 	})
+
+	app.post('/refresh_token', async (req: Request, res: Response) =>
+		refreshRoute(req, res),
+	)
 
 	await createConnection()
 

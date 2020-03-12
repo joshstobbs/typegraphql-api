@@ -1,3 +1,3 @@
-import bootstrap from './app/server'
+import bootstrap from './core/server'
 
 bootstrap()
