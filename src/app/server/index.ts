@@ -1,5 +1,8 @@
+import 'dotenv/config'
+import 'reflect-metadata'
 import express, { Response } from 'express'
 import { ApolloServer } from 'apollo-server-express'
+import { createConnection, Connection } from 'typeorm'
 import { json } from 'body-parser'
 import cors from 'cors'
 
@@ -18,6 +21,8 @@ const bootstrap = async () => {
 			message: 'Hello',
 		})
 	})
+
+	await createConnection()
 
 	const server = new ApolloServer({
 		schema: await createSchema,

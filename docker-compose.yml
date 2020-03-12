@@ -11,7 +11,7 @@ services:
         environment:
             POSTGRES_USER: joshstobbs
             POSTGRES_PASSWORD:
-            POSTGRES_DB: DATABASE_NAME
+            POSTGRES_DB: test
         ports:
             - "5432:5432"
     redis:
