@@ -3,6 +3,7 @@ import {
 	Entity,
 	PrimaryGeneratedColumn,
 	Column,
+	JoinTable,
 	ManyToMany,
 } from 'typeorm'
 import { Field, ID, ObjectType } from 'type-graphql'
@@ -18,4 +19,15 @@ export class Movie extends BaseEntity {
 	@Field()
 	@Column()
 	name: string
+
+	@Field(() => [Actor])
+	@ManyToMany(
+		() => Actor,
+		actor => actor.movies,
+		{
+			lazy: true,
+		},
+	)
+	@JoinTable({ name: 'actor_movies' })
+	actors: Actor[]
 }

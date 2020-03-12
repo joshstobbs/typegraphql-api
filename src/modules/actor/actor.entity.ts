@@ -21,7 +21,12 @@ export class Actor extends BaseEntity {
 	name: string
 
 	@Field(() => [Movie])
-	@ManyToMany(() => Movie)
-	@JoinTable()
+	@ManyToMany(
+		() => Movie,
+		movie => movie.actors,
+		{
+			lazy: true,
+		},
+	)
 	movies: Movie[]
 }
